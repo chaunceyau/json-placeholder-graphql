@@ -13,7 +13,8 @@ const typeDefs = gql`
   type Query {
     todos: [Todo!]!
     todo(id: ID!): Todo
-    stockPrice(symbol: String!): String!
+    stockPrice(ticker: String!): String!
+    deleteTodo(id: ID!): Boolean!
   }
 
   type Mutation {
@@ -40,14 +41,14 @@ const resolvers = {
         return null
       return todo
     },
-    stockPrice: async (_, { symbol }) => {
-      const lowercase_symbol = symbol.toLowerCase()
-      const url = `https://cloud.iexapis.com/stable/stock/${lowercase_symbol}/quote?token=pk_9334b1ec0de6483c925c78df9a4688f5`
+    stockPrice: async (_, { ticker }) => {
+      const lowercase_ticker = ticker.toLowerCase()
+      const url = `https://cloud.iexapis.com/stable/stock/${lowercase_ticker}/quote?token=pk_9334b1ec0de6483c925c78df9a4688f5`
       try {
         const { data: { latestPrice } } = await axios.get(url)
         return latestPrice
       } catch (err) {
-        throw new UserInputError(`Could not find the stock with the symbol ${lowercase_symbol}`)
+        throw new UserInputError(`Could not find the stock with the ticker ${lowercase_ticker}`)
       }
 
     }
@@ -74,6 +75,12 @@ const resolvers = {
       const updated_todo = db.get('todos').find({ id }).assign({ completed: !todo.completed }).write()
 
       return updated_todo
+    },
+    deleteTodo: (_, { id }) => {
+      const remove = db.get('toods').remove({ id }).write()
+      if (remove)
+        return true
+      return false
     }
   }
 };
