@@ -14,12 +14,12 @@ const typeDefs = gql`
     todos: [Todo!]!
     todo(id: ID!): Todo
     stockPrice(ticker: String!): String!
-    deleteTodo(id: ID!): Boolean!
   }
 
   type Mutation {
     addTodo(title: String!): Todo!
     toggleTodoStatus(id: ID!): Todo!
+    deleteTodo(id: ID!): Boolean!
   }
 
   type Todo {
