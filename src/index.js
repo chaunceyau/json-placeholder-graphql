@@ -77,7 +77,7 @@ const resolvers = {
       return updated_todo
     },
     deleteTodo: (_, { id }) => {
-      const remove = db.get('toods').remove({ id }).write()
+      const remove = db.get('todos').remove({ id }).write()
       if (remove)
         return true
       return false
