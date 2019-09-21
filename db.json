@@ -1,3 +1,34 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "__-9sDtH",
+      "title": "Order Groceries",
+      "completed": false
+    },
+    {
+      "id": "LdiUby2v",
+      "title": "Pay Internet Bill",
+      "completed": false
+    },
+    {
+      "id": "GsCgTvjI",
+      "title": "Go To Store",
+      "completed": false
+    },
+    {
+      "id": "Oi2U0KFq",
+      "title": "Go To Store",
+      "completed": false
+    },
+    {
+      "id": "xT2FZ7Au",
+      "title": "Test Again",
+      "completed": false
+    },
+    {
+      "id": "ofGakNDb",
+      "title": "After Update Function",
+      "completed": false
+    }
+  ]
 }
